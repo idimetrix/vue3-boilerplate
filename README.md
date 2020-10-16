@@ -1,5 +1,7 @@
 # vue3-boilerplate
 
+### Vue 3, Vue Router 4, Vuex 4, Vue Class Component 8, Typescript 4, Jest, Sass, ESLint, Prettier - Boilerplate
+
 ## Project setup
 ```
 yarn install
