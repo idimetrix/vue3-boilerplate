@@ -1,5 +1,5 @@
 <template>
-  <div>{{ msg }}</div>
+  <div v-loader="">{{ msg }}</div>
 </template>
 
 <script lang="ts">

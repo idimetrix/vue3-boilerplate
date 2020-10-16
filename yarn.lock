@@ -7920,6 +7920,11 @@ loglevel@^1.6.8:
   resolved "https://registry.yarnpkg.com/loglevel/-/loglevel-1.7.0.tgz#728166855a740d59d38db01cf46f042caa041bb0"
   integrity sha512-i2sY04nal5jDcagM3FMfG++T69GEEM8CYuOfeOIvmXzOIcwE9a/CJPR0MFM97pYMj/u10lzz7/zd7+qwhrBTqQ==
 
+logvis@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/logvis/-/logvis-1.0.6.tgz#77ef6d8f394b9de3d73953d445eafa7061b8ab3b"
+  integrity sha512-Ugod9JZjNoNsks1IFVkWoP9jucGwtZHPdHXL7OwS7sfMapzNygaqDbzm6BEycq1QnHt+1bm/ae4dQQnUNOq6iQ==
+
 loose-envify@^1.0.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
