@@ -28,7 +28,5 @@ yarn test:e2e
 ### Lints and fixes files
 ```
 yarn lint
+yarn lint:fix
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
