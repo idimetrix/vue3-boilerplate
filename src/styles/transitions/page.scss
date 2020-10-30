@@ -1,0 +1,11 @@
+$duration: 500ms;
+
+.page-enter-active {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity $duration, transform $duration;
+}
+.page-enter-to {
+  opacity: 1;
+  transform: translateX(0);
+}

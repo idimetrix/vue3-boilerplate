@@ -3,7 +3,9 @@
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
   </div>
-  <router-view />
+  <transition name="page" mode="out-in">
+    <router-view style="animation-duration: 0.5s" />
+  </transition>
 </template>
 
 <style lang="scss">

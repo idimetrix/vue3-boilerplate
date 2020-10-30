@@ -35,7 +35,8 @@
     "vue": "^3.0.1",
     "vue-class-component": "^8.0.0-beta.4",
     "vue-router": "^4.0.0-beta.13",
-    "vuex": "^4.0.0-beta.4"
+    "vuex": "^4.0.0-beta.4",
+    "vuex-module-decorators": "^1.0.1"
   },
   "devDependencies": {
     "@types/jest": "^26.0.14",
@@ -54,6 +55,7 @@
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/eslint-config-typescript": "^7.0.0",
     "@vue/test-utils": "^2.0.0-beta.6",
+    "babel-plugin-transform-decorators": "^7.0.0-beta.3",
     "eslint": "^7.11.0",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-vue": "^7.0.1",
@@ -62,7 +64,7 @@
     "prettier": "^2.1.2",
     "sass-loader": "^10.0.3",
     "source-map-explorer": "^2.5.0",
-    "typescript": "~4.1.0-dev.20201016",
+    "typescript": "~4.1.0-dev.20201017",
     "vue-jest": "^5.0.0-alpha.5"
   }
 }

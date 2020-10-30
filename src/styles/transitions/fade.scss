@@ -1,0 +1,9 @@
+$duration: 500ms;
+
+.fade-enter-active {
+  opacity: 0;
+  transition: opacity $duration;
+}
+.fade-enter-to {
+  opacity: 1;
+}
