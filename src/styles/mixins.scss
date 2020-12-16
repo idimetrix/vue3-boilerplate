@@ -1,0 +1,179 @@
+@import './variables';
+
+/// Convert angle
+/// @param {Number} $value - Value to convert
+/// @param {String} $unit - Unit to convert to
+/// @return {Number} Converted angle
+@function convert-angle($value, $unit) {
+	$convertable-units: deg grad turn rad;
+	$conversion-factors: 1 (10grad/9deg) (1turn/360deg) (3.1415926rad/180deg);
+	@if index($convertable-units, unit($value)) and index($convertable-units, $unit) {
+		@return $value / nth($conversion-factors, index($convertable-units, unit($value))) * nth($conversion-factors, index($convertable-units, $unit));
+	}
+
+	@warn 'Cannot convert `#{unit($value)}` to `#{$unit}`.';
+}
+
+/// Test if `$value` is an angle
+/// @param {*} $value - Value to test
+/// @return {Bool}
+@function is-direction($value) {
+	$is-direction: index((
+		to top,
+		to top right,
+		to right top,
+		to right,
+		to bottom right,
+		to right bottom,
+		to bottom,
+		to bottom left,
+		to left bottom,
+		to left,
+		to left top,
+		to top left
+	),
+	$value);
+	$is-angle: type-of($value) == 'number' and index('deg' 'grad' 'turn' 'rad', unit($value));
+
+	@return $is-direction or $is-angle;
+}
+
+/// Convert a direction to legacy syntax
+/// @param {Keyword | Angle} $value - Value to convert
+/// @require {function} is-direction
+/// @require {function} convert-angle
+@function legacy-direction($value) {
+	@if is-direction($value) == false {
+		@warn "Cannot convert `#{$value}` to legacy syntax because it doesn't seem to be an angle or a direction";
+	}
+
+	$conversion-map: (
+		to top: bottom,
+		to top right: bottom left,
+		to right top: left bottom,
+		to right: left,
+		to bottom right: top left,
+		to right bottom: left top,
+		to bottom: top,
+		to bottom left: top right,
+		to left bottom: right top,
+		to left: right,
+		to left top: right bottom,
+		to top left: bottom right
+	);
+
+	@if map-has-key($conversion-map, $value) {
+		@return map-get($conversion-map, $value);
+	}
+
+	@return 90deg - convert-angle($value, 'deg');
+}
+
+/// Mixin printing a linear-gradient
+/// as well as a plain color fallback
+/// and the `-webkit-` prefixed declaration
+/// @access public
+/// @param {String | List | Angle} $direction - Linear gradient direction
+/// @param {Arglist} $color-stops - List of color-stops composing the gradient
+@mixin linear-gradient($direction, $color-stops...) {
+	@if is-direction($direction) == false {
+		$color-stops: ($direction, $color-stops);
+		$direction: 180deg;
+	}
+
+	background: nth(nth($color-stops, 1), 1);
+	background: linear-gradient($direction, $color-stops);
+}
+
+@mixin text-bordered-shadow() {
+	text-shadow: 0 0 1px lighten($background-color, 0%), 0 0 1px lighten($background-color, 0%), 0 0 1px lighten($background-color, 0%),
+		0 0 1px lighten($background-color, 0%), 0 0 1px lighten($background-color, 0%), 0 0 1px lighten($background-color, 0%),
+		0 0 1px lighten($background-color, 0%), 0 1px 2px rgba(0, 0, 0, 0.3), 0 3px 9px rgba(0, 0, 0, 0.1);
+}
+
+@mixin perfect-scrollbar() {
+	&::-webkit-scrollbar {
+		width: 9px;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background: #e5e7eb;
+		border-radius: 4.5px;
+	}
+
+	&::-webkit-scrollbar-track {
+		background: transparent;
+		border-radius: 4.5px;
+	}
+}
+
+@mixin responsive-table($headers) {
+	&::before,
+	&::after {
+		display: none !important;
+	}
+
+	/deep/ .el-table__header-wrapper {
+		display: none;
+	}
+
+	/deep/ .el-table__body-wrapper {
+		table {
+			width: 100% !important;
+		}
+
+		table,
+		thead,
+		tbody,
+		th,
+		td,
+		tr {
+			display: block;
+		}
+
+		tr {
+			border-top: 1px solid #006be0;
+
+			&:first-child {
+				margin-top: 20px;
+			}
+
+			&:last-child {
+				border-bottom: 1px solid #006be0;
+			}
+		}
+
+		td {
+			align-items: center;
+			border: 0;
+			border-bottom: 1px solid #e6e6e6;
+			display: flex;
+			position: relative;
+
+			&:last-child {
+				border-bottom: 0;
+			}
+
+			.cell {
+				display: flex;
+				flex: 1;
+				padding: 0;
+				text-align: left;
+			}
+		}
+
+		td::before {
+			align-items: center;
+			display: flex;
+			min-width: 80px;
+			padding: 0 10px 0 0;
+			width: 40%;
+		}
+
+		@each $index, $name in $headers {
+			td:nth-of-type(#{$index}):before {
+				content: $name;
+			}
+		}
+	}
+}

@@ -1,0 +1,22 @@
+.svg-icon {
+	color: inherit;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.svg-up {
+	/* default */
+	transform: rotate(0deg);
+}
+
+.svg-right {
+	transform: rotate(90deg);
+}
+
+.svg-down {
+	transform: rotate(180deg);
+}
+
+.svg-left {
+	transform: rotate(-90deg);
+}

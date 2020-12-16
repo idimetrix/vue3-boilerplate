@@ -1,30 +1,56 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view />
+  <transition mode="out-in" name="fade">
+    <component :is="layout" v-if="layout" />
+  </transition>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script lang="ts">
+import { Options, Vue } from "vue-class-component";
+import { Component } from "vue";
 
-#nav {
-  padding: 30px;
+import AOS from "aos";
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+type IComponents = {
+  [key: string]: Component;
+};
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+const rc: { keys(): string[]; <T>(id: string): T } = require.context(
+  "./layouts",
+  false,
+  /.*\.vue$/
+);
+
+const layouts: IComponents = rc.keys().reduce<IComponents>(
+  (components: IComponents, file: string): IComponents => ({
+    ...components,
+    [file.replace(/(^.\/)|(\.vue$)/g, "")]: rc<IComponents>(file)?.default,
+  }),
+  {}
+);
+
+@Options({
+  name: "App",
+})
+export default class extends Vue {
+  // --- computed
+
+  get layout(): Component {
+    return layouts[this.$route?.meta?.layout || "default"];
+  }
+
+  // --- hooks
+
+  mounted(): void {
+    AOS.init({
+      duration: 500,
+      disable: true,
+    });
+  }
+
+  destroyed(): void {
+    //
   }
 }
-</style>
+</script>
+
+<style lang="scss" scoped></style>

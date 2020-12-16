@@ -1,0 +1,18 @@
+$break--xs: 374px; // Triggers at 374px
+$break--sm: 768px; // Triggers at 768px
+$break--md: 992px; // Triggers at 992px
+$break--lg: 1200px; // Triggers at 1200px
+$break--xl: 1920px; // Triggers at 1920px
+
+// Example: @include over-break(breakpoint-variable)
+@mixin over-break($viewportWidth) {
+	@media only screen and (min-width: $viewportWidth) {
+		@content;
+	}
+}
+// Example: @include under-break(breakpoint-variable)
+@mixin under-break($viewportWidth) {
+	@media only screen and (max-width: ($viewportWidth)) {
+		@content;
+	}
+}

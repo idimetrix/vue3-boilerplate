@@ -1,0 +1,472 @@
+@import './medias';
+
+*,
+::after,
+::before {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+
+$sizes: (
+	'xl': $break--xl,
+	'lg': $break--lg,
+	'md': $break--md,
+	'sm': $break--sm,
+	'xs': $break--xs,
+);
+
+$sides: (top, bottom, left, right);
+
+$displays: (none, flex, block, table, table-cell, table-row);
+
+$texts: (left, right, center, auto, justify);
+
+@mixin helpers1($space, $prefix, $suffix) {
+	.#{$prefix}w-#{$space}#{$suffix} {
+		width: percentage($space / 100) !important;
+	}
+
+	.#{$prefix}h-#{$space}#{$suffix} {
+		height: percentage($space / 100) !important;
+	}
+}
+
+@mixin helpers2($space, $prefix, $suffix) {
+	.#{$prefix}f-s-#{$space}#{$suffix} {
+		font-size: #{$space}px;
+	}
+
+	.#{$prefix}w-#{$space}#{$suffix} {
+		width: percentage($space / 100) !important;
+	}
+
+	.#{$prefix}h-#{$space}#{$suffix} {
+		height: percentage($space / 100) !important;
+	}
+
+	.#{$prefix}m-#{$space}#{$suffix} {
+		margin: #{$space}px;
+	}
+	.#{$prefix}m-x-#{$space}#{$suffix} {
+		margin-left: #{$space}px !important;
+		margin-right: #{$space}px !important;
+	}
+
+	.#{$prefix}m-y-#{$space}#{$suffix} {
+		margin-bottom: #{$space}px !important;
+		margin-top: #{$space}px !important;
+	}
+	.#{$prefix}m-l-#{$space}#{$suffix} {
+		margin-left: #{$space}px;
+	}
+	.#{$prefix}m-r-#{$space}#{$suffix} {
+		margin-right: #{$space}px;
+	}
+	.#{$prefix}m-t-#{$space}#{$suffix} {
+		margin-top: #{$space}px;
+	}
+	.#{$prefix}m-b-#{$space}#{$suffix} {
+		margin-bottom: #{$space}px;
+	}
+
+	.#{$prefix}p-#{$space}#{$suffix} {
+		padding: #{$space}px;
+	}
+	.#{$prefix}p-x-#{$space}#{$suffix} {
+		padding-left: #{$space}px !important;
+		padding-right: #{$space}px !important;
+	}
+	.#{$prefix}p-y-#{$space}#{$suffix} {
+		padding-bottom: #{$space}px !important;
+		padding-top: #{$space}px !important;
+	}
+	.#{$prefix}p-l-#{$space}#{$suffix} {
+		padding-left: #{$space}px;
+	}
+	.#{$prefix}p-r-#{$space}#{$suffix} {
+		padding-right: #{$space}px;
+	}
+	.#{$prefix}p-t-#{$space}#{$suffix} {
+		padding-top: #{$space}px;
+	}
+	.#{$prefix}p-b-#{$space}#{$suffix} {
+		padding-bottom: #{$space}px;
+	}
+
+	.#{$prefix}t-#{$space}#{$suffix} {
+		top: #{$space}px;
+	}
+
+	.#{$prefix}b-#{$space}#{$suffix} {
+		bottom: #{$space}px;
+	}
+
+	.#{$prefix}r-#{$space}#{$suffix} {
+		right: #{$space}px;
+	}
+
+	.#{$prefix}l-#{$space}#{$suffix} {
+		left: #{$space}px;
+	}
+
+	.#{$prefix}br-#{$space}#{$suffix} {
+		border-width: #{$space}px !important;
+	}
+
+	.#{$prefix}br-t-#{$space}#{$suffix} {
+		border-top-width: #{$space}px !important;
+	}
+
+	.#{$prefix}br-b-#{$space}#{$suffix} {
+		border-bottom-width: #{$space}px !important;
+	}
+
+	.#{$prefix}br-r-#{$space}#{$suffix} {
+		border-right-width: #{$space}px !important;
+	}
+
+	.#{$prefix}br-l-#{$space}#{$suffix} {
+		border-left-width: #{$space}px !important;
+	}
+}
+
+@for $space from 0 through 100 {
+	@include helpers1($space, '', '');
+}
+@for $space from 0 through 50 {
+	@include helpers2($space, '', '');
+}
+
+@each $display in $displays {
+	.d-#{$display} {
+		display: #{$display};
+	}
+}
+
+@each $text in $texts {
+	.text-#{$text} {
+		text-align: #{$text};
+	}
+}
+
+@each $key, $size in $sizes {
+	@include over-break($size) {
+		@each $display in $displays {
+			.d-#{$display}-over-#{$key} {
+				display: #{$display};
+			}
+		}
+	}
+
+	@include under-break($size) {
+		@for $space from 0 through 100 {
+			@include helpers1($space, '', -#{$key});
+		}
+
+		@for $space from 0 through 100 {
+			@include helpers2($space, '', -#{$key});
+		}
+
+		@each $display in $displays {
+			.d-#{$display}-under-#{$key} {
+				display: #{$display};
+			}
+		}
+
+		@each $text in $texts {
+			.text-#{$text}-#{$key} {
+				text-align: #{$text};
+			}
+		}
+	}
+}
+
+.position-relative {
+	position: relative;
+}
+
+.position-absolute {
+	position: absolute;
+}
+
+.position-fixed {
+	position: fixed;
+}
+
+.vertical-middle {
+	vertical-align: middle;
+}
+
+.vertical-top {
+	vertical-align: top;
+}
+
+.vertical-bottom {
+	vertical-align: bottom;
+}
+
+.text-nowrap {
+	white-space: nowrap;
+}
+
+.text-lowercase {
+	text-transform: lowercase;
+}
+
+.text-uppercase {
+	text-transform: uppercase;
+}
+
+.text-capitalize {
+	text-transform: capitalize;
+}
+
+.m-auto {
+	margin: auto;
+}
+
+// Opacity helpers
+.o-0 {
+	opacity: 0;
+}
+
+.o-005 {
+	opacity: 0.05;
+}
+
+.o-010 {
+	opacity: 0.1;
+}
+
+.o-015 {
+	opacity: 0.15;
+}
+
+.o-020 {
+	opacity: 0.2;
+}
+
+.o-025 {
+	opacity: 0.25;
+}
+
+.o-030 {
+	opacity: 0.3;
+}
+
+.o-035 {
+	opacity: 0.35;
+}
+
+.o-040 {
+	opacity: 0.4;
+}
+
+.o-045 {
+	opacity: 0.45;
+}
+
+.o-050 {
+	opacity: 0.5;
+}
+
+.o-055 {
+	opacity: 0.55;
+}
+
+.o-060 {
+	opacity: 0.6;
+}
+
+.o-065 {
+	opacity: 0.65;
+}
+
+.o-070 {
+	opacity: 0.7;
+}
+
+.o-075 {
+	opacity: 0.75;
+}
+
+.o-080 {
+	opacity: 0.8;
+}
+
+.o-085 {
+	opacity: 0.85;
+}
+
+.o-090 {
+	opacity: 0.9;
+}
+
+.o-095 {
+	opacity: 0.95;
+}
+
+.o-1 {
+	opacity: 1;
+}
+
+.overflow-auto {
+	overflow: auto;
+}
+
+.overflow-x-auto {
+	overflow-x: auto;
+}
+
+.overflow-y-auto {
+	overflow-y: auto;
+}
+
+.overflow-hidden {
+	overflow: hidden;
+}
+
+.overflow-x-hidden {
+	overflow-x: hidden;
+}
+
+.overflow-y-hidden {
+	overflow-y: hidden;
+}
+
+// --- classes
+
+.scrollable {
+	-webkit-overflow-scrolling: touch !important;
+	overflow-x: auto;
+	overflow-y: auto;
+
+	&.only-x {
+		overflow-x: auto !important;
+		overflow-y: hidden !important;
+	}
+
+	&.only-y {
+		overflow-x: hidden !important;
+		overflow-y: auto !important;
+	}
+}
+
+@include over-break($break--sm) {
+	.scrollable {
+		&::-webkit-scrollbar {
+			height: 5px;
+			width: 5px;
+		}
+
+		&::-webkit-scrollbar-thumb,
+		&::-webkit-scrollbar-track {
+			background: transparent;
+			border-radius: 5px;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			background: transparentize(#606266, 0.95);
+		}
+
+		&:hover::-webkit-scrollbar-thumb {
+			background: transparentize(#606266, 0.85);
+
+			&:hover {
+				background: transparentize(#606266, 0.75);
+			}
+		}
+
+		&:hover::-webkit-scrollbar-track {
+			background: transparentize(#606266, 0.95);
+		}
+	}
+}
+
+.unselectable {
+	user-select: none;
+}
+
+$weights: (bold, normal, 100, 200, 300, 400, 500, 600, 700, 800, 900);
+
+@each $weight in $weights {
+	.weight-#{$weight} {
+		font-weight: #{$weight};
+	}
+}
+
+$cursors: (pointer, none);
+
+@each $cursor in $cursors {
+	.cursor-#{$cursor} {
+		cursor: #{$cursor};
+	}
+}
+//============================================================
+// Typography
+//============================================================
+
+// Requires inline-block or block for proper styling
+@mixin text-truncate {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+//============================================================
+// Transforms
+//============================================================
+
+@mixin transform($arguments...) {
+	transform: $arguments;
+}
+
+@mixin transform-origin($arguments...) {
+	transform-origin: $arguments;
+}
+
+@mixin rotate($arguments...) {
+	transform: rotate($arguments);
+}
+
+@mixin backface-visibility($arguments) {
+	backface-visibility: $arguments;
+}
+
+//============================================================
+// Animations
+//============================================================
+
+@mixin transition($arguments...) {
+	transition: $arguments;
+}
+
+@mixin animation($arguments) {
+	animation: $arguments;
+}
+
+//============================================================
+// Gradients
+//============================================================
+
+@mixin linear-gradient($from, $to) {
+	background-color: $from;
+	background-image: linear-gradient(to bottom, $from, $to);
+}
+
+//============================================================
+// Structure
+//============================================================
+
+@mixin box-sizing($arguments) {
+	box-sizing: $arguments;
+}
+
+.l-h-1 {
+	line-height: 1;
+}
