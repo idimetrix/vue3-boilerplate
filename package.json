@@ -1,7 +1,7 @@
 {
   "name": "vue3-boilerplate",
   "description": "Vue 3, Vue Router 4, Vuex 4, Vue Class Component 8, Typescript 4, Jest, Sass, ESLint, Prettier - Boilerplate 2021",
-  "version": "1.0.6",
+  "version": "1.0.8",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/idimetrix/vue3-boilerplate.git"
