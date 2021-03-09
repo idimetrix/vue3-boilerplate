@@ -1,9 +1,9 @@
-import { App, Plugin } from "@vue/runtime-core";
+import { App, Plugin } from '@vue/runtime-core';
 
-import log from "@/log";
+import log from '@/log';
 
 function component(context: any): string {
-  return (context?.$options?.name || "Unknown").toLocaleUpperCase();
+  return (context?.$options?.name || 'Unknown').toLocaleUpperCase();
 }
 
 export type Options = {
@@ -35,7 +35,7 @@ export const Logger: Plugin = {
   },
 };
 
-declare module "@vue/runtime-core" {
+declare module '@vue/runtime-core' {
   export interface ComponentCustomProperties {
     $log: (...data: any[]) => void;
     $debug: (...data: any[]) => void;

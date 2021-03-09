@@ -1,15 +1,9 @@
-import {
-  Module,
-  VuexModule,
-  Mutation,
-  Action,
-  getModule,
-} from "vuex-module-decorators";
+import { Module, VuexModule, Mutation, Action, getModule } from 'vuex-module-decorators';
 
-import store from "../index";
+import store from '../index';
 
 @Module({
-  name: "ModuleB",
+  name: 'ModuleB',
   dynamic: true,
   namespaced: true,
   store,
@@ -27,12 +21,12 @@ class ModuleB extends VuexModule {
   }
 
   // action 'incr' commits mutation 'increment' when done with return value as payload
-  @Action({ commit: "increment" })
+  @Action({ commit: 'increment' })
   incr() {
     return 5;
   }
   // action 'decr' commits mutation 'decrement' when done with return value as payload
-  @Action({ commit: "decrement" })
+  @Action({ commit: 'decrement' })
   decr() {
     return 5;
   }

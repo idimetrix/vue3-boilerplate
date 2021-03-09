@@ -1,9 +1,7 @@
-import { Logger } from "logvis";
+import { Logger } from 'logvis';
 
-const logger: Logger = new Logger("VUE3");
+const logger: Logger = new Logger('VUE3');
 
-process.env.NODE_ENV !== "production"
-  ? logger.enableAll()
-  : logger.disableAll();
+process.env.NODE_ENV !== 'production' ? logger.enableAll() : logger.disableAll();
 
 export default logger;

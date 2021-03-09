@@ -6,13 +6,13 @@ $break--xl: 1920px; // Triggers at 1920px
 
 // Example: @include over-break(breakpoint-variable)
 @mixin over-break($viewportWidth) {
-	@media only screen and (min-width: $viewportWidth) {
-		@content;
-	}
+  @media only screen and (min-width: $viewportWidth) {
+    @content;
+  }
 }
 // Example: @include under-break(breakpoint-variable)
 @mixin under-break($viewportWidth) {
-	@media only screen and (max-width: ($viewportWidth)) {
-		@content;
-	}
+  @media only screen and (max-width: ($viewportWidth)) {
+    @content;
+  }
 }

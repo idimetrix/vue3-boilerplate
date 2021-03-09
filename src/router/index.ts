@@ -1,4 +1,4 @@
-import { ComponentPublicInstance } from "vue";
+import { ComponentPublicInstance } from 'vue';
 import {
   createRouter,
   createWebHistory,
@@ -9,31 +9,26 @@ import {
   RouteLocationRaw,
   Router,
   RouteRecordNormalized,
-} from "vue-router";
-import { sync } from "vuex-router-sync";
+} from 'vue-router';
+import { sync } from 'vuex-router-sync';
 
-import store from "@/store";
-import log from "@/log";
+import store from '@/store';
+import log from '@/log';
 
-import { routes } from "./routes";
+import { routes } from './routes';
 
 interface ScrollPositionElement extends ScrollToOptions {
   el: string | Element;
 }
 
 type ScrollPositionCoordinates = {
-  behavior?: ScrollOptions["behavior"];
+  behavior?: ScrollOptions['behavior'];
   left?: number;
   top?: number;
 };
 
 type NavigationGuardNextCallback = (vm: ComponentPublicInstance) => any;
-type NavigationGuardReturn =
-  | void
-  | Error
-  | RouteLocationRaw
-  | boolean
-  | NavigationGuardNextCallback;
+type NavigationGuardReturn = void | Error | RouteLocationRaw | boolean | NavigationGuardNextCallback;
 
 // async function pipeline(
 //     to: RouteLocationNormalized,

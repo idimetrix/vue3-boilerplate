@@ -5,18 +5,18 @@
 </template>
 
 <script lang="ts">
-import { Options, Vue } from "vue-class-component";
+import { Options, Vue } from 'vue-class-component';
 
-import log from "@/log";
+import log from '@/log';
 
 @Options({
   props: {
     type: {
       type: String,
-      default: "",
+      default: '',
     },
   },
-  name: "Example",
+  name: 'Example',
 })
 export default class Button extends Vue {
   // --- props
@@ -71,11 +71,7 @@ export default class Button extends Vue {
     this.$log(`deactivated`);
   }
 
-  public errorCaptured?(
-    err: Error,
-    vm: Vue,
-    info: string
-  ): boolean | undefined {
+  public errorCaptured?(err: Error, vm: Vue, info: string): boolean | undefined {
     log.error(`errorCaptured`, { err, vm, info });
 
     return true;

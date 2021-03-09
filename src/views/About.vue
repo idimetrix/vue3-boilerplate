@@ -5,13 +5,13 @@
 </template>
 
 <script lang="ts">
-import { Options, Vue } from "vue-class-component";
-import { getModule } from "vuex-module-decorators";
+import { Options, Vue } from 'vue-class-component';
+import { getModule } from 'vuex-module-decorators';
 
-import ModuleA from "@/store/moduleA";
-import ModuleB from "@/store/moduleB";
+import ModuleA from '@/store/moduleA';
+import ModuleB from '@/store/moduleB';
 
-import { Button } from "@/components/Button";
+import { Button } from '@/components/Button';
 
 @Options({
   components: {

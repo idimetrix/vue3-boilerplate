@@ -1,13 +1,13 @@
 <template>
   <div class="home">
-    <Button>Test</Button>
+    <Button>Test 123</Button>
   </div>
 </template>
 
 <script lang="ts">
-import { Options, Vue } from "vue-class-component";
+import { Options, Vue } from 'vue-class-component';
 
-import { Button } from "@/components/Button";
+import { Button } from '@/components/Button';
 
 @Options({
   components: {

@@ -5,37 +5,33 @@
 </template>
 
 <script lang="ts">
-import { Options, Vue } from "vue-class-component";
-import { Component } from "vue";
+import { Options, Vue } from 'vue-class-component';
+import { Component } from 'vue';
 
-import AOS from "aos";
+import AOS from 'aos';
 
 type IComponents = {
   [key: string]: Component;
 };
 
-const rc: { keys(): string[]; <T>(id: string): T } = require.context(
-  "./layouts",
-  false,
-  /.*\.vue$/
-);
+const rc: { keys(): string[]; <T>(id: string): T } = require.context('./layouts', false, /.*\.vue$/);
 
 const layouts: IComponents = rc.keys().reduce<IComponents>(
   (components: IComponents, file: string): IComponents => ({
     ...components,
-    [file.replace(/(^.\/)|(\.vue$)/g, "")]: rc<IComponents>(file)?.default,
+    [file.replace(/(^.\/)|(\.vue$)/g, '')]: rc<IComponents>(file)?.default,
   }),
   {}
 );
 
 @Options({
-  name: "App",
+  name: 'App',
 })
 export default class extends Vue {
   // --- computed
 
   get layout(): Component {
-    return layouts[this.$route?.meta?.layout || "default"];
+    return layouts[this.$route?.meta?.layout || 'default'];
   }
 
   // --- hooks

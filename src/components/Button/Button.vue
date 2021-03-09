@@ -5,35 +5,28 @@
 </template>
 
 <script lang="ts">
-import { Options, Vue } from "vue-class-component";
+import { Options, Vue } from 'vue-class-component';
 
-import log from "@/log";
+import log from '@/log';
 
 @Options({
   props: {
     type: {
       type: String,
-      default: "",
+      default: '',
     },
     size: {
       type: String,
-      default: "",
+      default: '',
     },
   },
-  name: "Button",
+  name: 'Button',
 })
 export default class Button extends Vue {
   // --- props
 
-  public type!:
-    | ""
-    | "primary"
-    | "success"
-    | "warning"
-    | "danger"
-    | "info"
-    | "text";
-  public size!: "" | "xs" | "sm" | "md" | "lg" | "xl";
+  public type!: '' | 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'text';
+  public size!: '' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
   // --- computed
 
@@ -42,11 +35,11 @@ export default class Button extends Vue {
   }
 
   get classSize(): string {
-    return [this.class, this.size].filter(Boolean).join("--");
+    return [this.class, this.size].filter(Boolean).join('--');
   }
 
   get classType(): string {
-    return [this.class, this.type].filter(Boolean).join("--");
+    return [this.class, this.type].filter(Boolean).join('--');
   }
 
   get classes(): string[] {
@@ -101,11 +94,7 @@ export default class Button extends Vue {
     this.$log(`deactivated`);
   }
 
-  public errorCaptured?(
-    err: Error,
-    vm: Vue,
-    info: string
-  ): boolean | undefined {
+  public errorCaptured?(err: Error, vm: Vue, info: string): boolean | undefined {
     log.error(`errorCaptured`, { err, vm, info });
 
     return true;

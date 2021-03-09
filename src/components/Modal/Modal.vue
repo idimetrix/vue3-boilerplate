@@ -6,18 +6,18 @@
 </template>
 
 <script lang="ts">
-import { Options, Vue } from "vue-class-component";
+import { Options, Vue } from 'vue-class-component';
 
-import log from "@/log";
+import log from '@/log';
 
 @Options({
   props: {
     msg: String,
   },
   watch: {
-    count: { handler: "countChanged", immediate: true },
+    count: { handler: 'countChanged', immediate: true },
   },
-  name: "Modal",
+  name: 'Modal',
 })
 export default class Modal extends Vue {
   // --- props
@@ -101,11 +101,7 @@ export default class Modal extends Vue {
     this.$log(`deactivated`);
   }
 
-  public errorCaptured?(
-    err: Error,
-    vm: Vue,
-    info: string
-  ): boolean | undefined {
+  public errorCaptured?(err: Error, vm: Vue, info: string): boolean | undefined {
     log.error(`errorCaptured`, { err, vm, info });
 
     return true;

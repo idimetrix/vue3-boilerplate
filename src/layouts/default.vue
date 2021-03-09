@@ -9,10 +9,10 @@
 </template>
 
 <script lang="ts">
-import { Options, Vue } from "vue-class-component";
+import { Options, Vue } from 'vue-class-component';
 
 @Options({
-  name: "DefaultLayout",
+  name: 'DefaultLayout',
 })
 export default class extends Vue {}
 </script>

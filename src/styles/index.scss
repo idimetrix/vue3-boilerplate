@@ -1,19 +1,18 @@
 @import '~aos/dist/aos.css';
 @import '~flex.box';
 
-@import "reset";
-@import "colors";
-@import "transitions";
-@import "helpers";
-@import "svg";
+@import 'reset';
+@import 'colors';
+@import 'transitions';
+@import 'helpers';
+@import 'svg';
 
-html{
-
+html {
 }
 
 body {
   background-color: var(--white-dark);
-  font-family: -apple-system,BlinkMacSystemFont,Roboto,Inter,Helvetica,Arial,sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Roboto, Inter, Helvetica, Arial, sans-serif;
   color: var(--general-text-color);
   font-size: 100%;
   line-height: 1.75;
