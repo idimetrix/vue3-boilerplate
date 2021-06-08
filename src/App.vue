@@ -31,7 +31,7 @@ export default class extends Vue {
   // --- computed
 
   get layout(): Component {
-    return layouts[this.$route?.meta?.layout || 'default'];
+    return layouts[(this.$route as any)?.meta?.layout || 'default'];
   }
 
   // --- hooks
